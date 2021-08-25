@@ -1,4 +1,4 @@
-import hmac
+# import hmac
 import sqlite3
 
 from flask import Flask, request, jsonify
@@ -94,10 +94,10 @@ def image_convert():
                       api_secret="HwbSS8r41xhx6tYhQ_KC7TulLL4")
     upload_result = None
     if request.method == 'POST' or request.method == 'PUT':
-        beat_img = request.files['image']
-        app.logger.info('%s file_to_upload', beat_img)
-        if beat_img:
-            upload_result = cloudinary.uploader.upload(beat_img)
+        picture = request.files['image']
+        app.logger.info('%s file_to_upload', picture)
+        if picture:
+            upload_result = cloudinary.uploader.upload(picture)
             app.logger.info(upload_result)
             return upload_result['url']
 
@@ -163,18 +163,17 @@ def create_beat():
         beat_name = request.form['beat_name']
         beat_type = request.form['beat_type']
         beat_tempo = request.form['beat_tempo']
-        beat_img = image_convert()
+        image = image_convert()
         producer = request.form['producer']
 
         with sqlite3.connect('Store.db') as conn:
             cursor = conn.cursor()
             cursor.execute("INSERT INTO beats("
-                           "id"
                            "beat_name,"
                            "beat_type,"
                            "beat_tempo,"
                            "image,"
-                           "producer) VALUES(?, ?, ?, ?, ?, ?)", (id, beat_name, beat_type, beat_tempo, beat_img, producer))
+                           "producer) VALUES(?, ?, ?, ?, ?)", (beat_name, beat_type, beat_tempo, image, producer))
             conn.commit()
             response["message"] = "success"
             response["status_code"] = 201
@@ -221,7 +220,7 @@ def delete_post(id):
         return response
 
 
-@app.route('/edit-post/<int:id>/', methods=["PUT"])
+@app.route('/edit-beat/<int:id>/', methods=["PUT"])
 def edit_post(id):
     response = {}
 
@@ -230,7 +229,7 @@ def edit_post(id):
             beat_name = request.form['beat_name']
             beat_type = request.form['beat_type']
             beat_tempo = request.form['beat_tempo']
-            beat_img = request.files['beat_img']
+            image = request.files['image']
             producer = request.form['producer']
             put_data = {}
 
@@ -255,12 +254,12 @@ def edit_post(id):
                 conn.commit()
                 response["beat_tempo"] = "Content updated successfully"
                 response["status_code"] = 200
-            if beat_img is not None:
-                put_data['beat_img'] = image_convert()
+            if image is not None:
+                put_data['image'] = image_convert()
                 cursor = conn.cursor()
-                cursor.execute("UPDATE beats SET beat_img =? WHERE id=?", (put_data["beat_img"], id))
+                cursor.execute("UPDATE beats SET image =? WHERE id=?", (put_data["image"], id))
                 conn.commit()
-                response["beat_img"] = "Content updated successfully"
+                response["image"] = "Content updated successfully"
                 response["status_code"] = 200
             if producer is not None:
                 put_data['producer'] = producer
