@@ -94,7 +94,7 @@ def image_convert():
                       api_secret="HwbSS8r41xhx6tYhQ_KC7TulLL4")
     upload_result = None
     if request.method == 'POST' or request.method == 'PUT':
-        picture = request.files['image']
+        picture = request.json['image']
         app.logger.info('%s file_to_upload', picture)
         if picture:
             upload_result = cloudinary.uploader.upload(picture)
@@ -241,7 +241,7 @@ def edit_post(id):
             beat_name = request.json['beat_name']
             beat_type = request.json['beat_type']
             beat_tempo = request.json['beat_tempo']
-            image = request.files['image']
+            image = request.json['image']
             producer = request.json['producer']
             put_data = {}
 
