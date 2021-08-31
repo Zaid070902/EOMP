@@ -296,5 +296,30 @@ def edit_post(id):
     return response
 
 
+@app.route('/login/', methods=["PATCH"])
+def log():
+    response = {}
+
+    if request.method == 'PATCH':
+        username = request.json['username']
+        password = request.json['password']
+
+        with sqlite3.connect('Store.db') as conn:
+            cursor = conn.cursor()
+            cursor.row_factory = sqlite3.Row
+            cursor.execute('SELECT FROM users WHERE username=? and password=?', (username, password))
+            user = cursor.fetchall()
+            data = []
+
+            for a in user:
+                data.append({u: a[u] for u in a.keys()})
+
+        response['data'] = data
+        response['status_code'] = 200
+        response['message'] = "Data collected"
+
+    return response
+
+
 if __name__ == "__main__":
     app.run(debug=True)
