@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* scroll-behavior: smooth; */
+    font-family: sans-serif;
+  }
+
+  .navbar-links {
+    display: flex;
+    list-style-type: none;
+    background: rgb(0, 0, 100);
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    transition: all 0.3s linear;
+    font-weight: 200;
+    box-shadow: 0 5px 20px rgb(0, 0, 50);
+  }
+  
+  .link-text {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-shadow: 2px 2px black;
+  }
+  
+  .navigate {
+    margin: 50px;
+    display: flex;
+    gap: 30px;
+  }
+
+
+  img{
+      height: 250px;
+      width: 250px;
+  }
+
+  #container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      background-image: url(/EOMP/frontend/images/9\ Insane\ LED\ Recording\ Studio\ Setups.jpeg);
+      /* background-attachment: fixed; */
+      overflow: hidden;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+
+  .beats{
+      margin: 20px;
+      box-shadow: 0 5px 5px rgb(0, 0, 100);
+      padding: 20px;
+      background-color: rgba(100, 0, 100, 0.5);
+      color: rgb(200, 200, 200);
+      text-shadow: 2px 2px black;
+  }
+
+  .info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .beat-box{
+      margin-top: 5%;
+  }
