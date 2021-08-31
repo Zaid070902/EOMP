@@ -17,13 +17,14 @@ class Users(object):
 
 
 class Beat(object):
-    def __init__(self, id, beat_name, beat_type, beat_tempo, image, producer):
+    def __init__(self, id, beat_name, beat_type, beat_tempo, image, producer, price):
         self.id = id
         self.beat_name = beat_name
         self.beat_type = beat_type
         self.beat_tempo = beat_tempo
         self.image = image
         self.producer = producer
+        self.price = price
 
 
 def usertable():
@@ -64,7 +65,8 @@ def beats_table():
                      "beat_type TEXT NOT NULL,"
                      "beat_tempo TEXT NOT NULL,"
                      "image TEXT NOT NULL,"
-                     "producer TEXT NOT NULL)")
+                     "producer TEXT NOT NULL,"
+                     "price INTEGER NOT NULL)")
         print("beat table created")
 
 
@@ -80,7 +82,7 @@ def get_beats():
         beat_data = []
 
         for data in beat:
-            beat_data.append(Beat(data[0], data[1], data[2], data[3], data[4], data[5]))
+            beat_data.append(Beat(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
     return beat_data
 
 
@@ -94,7 +96,7 @@ def image_convert():
                       api_secret="HwbSS8r41xhx6tYhQ_KC7TulLL4")
     upload_result = None
     if request.method == 'POST' or request.method == 'PUT':
-        picture = request.json['image']
+        picture = request.files['image']
         app.logger.info('%s file_to_upload', picture)
         if picture:
             upload_result = cloudinary.uploader.upload(picture)
@@ -160,11 +162,12 @@ def create_beat():
     response = {}
 
     if request.method == "POST":
-        beat_name = request.json['beat_name']
-        beat_type = request.json['beat_type']
-        beat_tempo = request.json['beat_tempo']
+        beat_name = request.form['beat_name']
+        beat_type = request.form['beat_type']
+        beat_tempo = request.form['beat_tempo']
         image = image_convert()
-        producer = request.json['producer']
+        producer = request.form['producer']
+        price = request.form['price']
 
         with sqlite3.connect('Store.db') as conn:
             cursor = conn.cursor()
@@ -173,7 +176,8 @@ def create_beat():
                            "beat_type,"
                            "beat_tempo,"
                            "image,"
-                           "producer) VALUES(?, ?, ?, ?, ?)", (beat_name, beat_type, beat_tempo, image, producer))
+                           "producer,"
+                           "price) VALUES(?, ?, ?, ?, ?, ?)", (beat_name, beat_type, beat_tempo, image, producer, price))
             conn.commit()
             response["message"] = "success"
             response["status_code"] = 201
@@ -243,6 +247,7 @@ def edit_post(id):
             beat_tempo = request.json['beat_tempo']
             image = request.json['image']
             producer = request.json['producer']
+            price = request.json['price']
             put_data = {}
 
             if beat_name is not None:
@@ -280,6 +285,14 @@ def edit_post(id):
                 conn.commit()
                 response["producer"] = "Content updated successfully"
                 response["status_code"] = 200
+            if producer is not None:
+                put_data['price'] = producer
+                cursor = conn.cursor()
+                cursor.execute("UPDATE beats SET price =? WHERE id=?", (put_data["price"], id))
+                conn.commit()
+                response["price"] = "Content updated successfully"
+                response["status_code"] = 200
+
     return response
 
 
