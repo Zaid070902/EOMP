@@ -153,7 +153,7 @@ def registration():
         msg = Message('Hello Message', sender='zaidflandorp4@gamil.com', recipients=[email])
         msg.body = "My email using Flask"
         mail.send(msg)
-        return "Message send"
+        # return "Message send"
     return response
 
 
@@ -162,12 +162,12 @@ def create_beat():
     response = {}
 
     if request.method == "POST":
-        beat_name = request.form['beat_name']
-        beat_type = request.form['beat_type']
-        beat_tempo = request.form['beat_tempo']
+        beat_name = request.json['beat_name']
+        beat_type = request.json['beat_type']
+        beat_tempo = request.json['beat_tempo']
         image = image_convert()
-        producer = request.form['producer']
-        price = request.form['price']
+        producer = request.json['producer']
+        price = request.json['price']
 
         with sqlite3.connect('Store.db') as conn:
             cursor = conn.cursor()
