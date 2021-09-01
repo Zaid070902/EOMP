@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* scroll-behavior: smooth; */
+    font-family: sans-serif;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style-type: none;
+    background: rgb(0, 0, 100);
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    transition: all 0.3s linear;
+    font-weight: 200;
+    box-shadow: 0 5px 20px rgb(0, 0, 100);
+  }
+  
+  .link-text {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-shadow: 2px 2px black;
+  }
+  
+  .navigate {
+    margin: 50px;
+    display: flex;
+    gap: 30px;
+  }
+
+  #Home{
+    background-image: url(/EOMP/frontend/images/Glow\ night\ skyline.png);
+    /* background-color: #111; */
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    /* height: 100vh; */
+  }
+
+.page{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.heading{
+    color: rgb(200, 200, 200);
+    font-size: 50px;
+    font-weight: 900;
+    text-shadow: 2px 2px black;
+
+}
+
+.card-box{
+    display: flex;
+    justify-content: center;
+}
+ 
+.c1{
+    height: 250px;
+    width: 250px;
+    margin: 20px;
+    box-shadow: 0 5px 5px rgb(100, 0, 100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: rgb(200, 200, 200);
+    font-weight: 900;
+    text-shadow: 2px 2px black;
+    border: 1px solid rgb(100, 0, 100);
+    background-color: rgba(0, 150, 255, 0.2);
+}
+
+.c2{
+  height: 250px;
+  width: 250px;
+  margin: 20px;
+  box-shadow: 0 5px 5px rgb(0, 0, 100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: rgb(200, 200, 200);
+  font-weight: 900;
+  text-shadow: 2px 2px black;
+  border: 1px solid rgb(0, 0, 100);
+  background-color: rgba(0, 150, 255, 0.2);
+}
+
+.c1:hover{
+    box-shadow: 0 10px 10px  rgb(0, 0, 100);
+    border: 1px solid rgb(0, 0, 100);
+    transition: 0.5s;
+}
+
+.c2:hover{
+  box-shadow: 0 10px 10px  rgb(100, 0, 100);
+  border: 1px solid rgb(100, 0, 100);
+  transition: 0.5s;
+}
+
+.link{
+  text-decoration: none;
+}

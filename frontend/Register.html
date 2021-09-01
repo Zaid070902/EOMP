@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/Register.css" />
+  </head>
+  <body>
+
+    <nav class="navbar">
+        <ul class="navbar-links">
+          <div class="navigate">
+            <li class="navbar-link">
+              <a href="./index.html" class="link-text">Home</a>
+            </li>
+            <li class="navbar-link">
+              <a href="./Register.html" class="link-text">Sign up</a>
+            </li>
+            <li class="navbar-link">
+              <a href="#" class="link-text">Login</a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+
+      <div id="register">
+  
+      <div class="reg-head"><h1 class="head">Register</h1></div>
+
+      <div class="register_items">
+        <div class="reg-form">
+          <form onsubmit="event.preventDefault(); reg()">
+            <div class="form-item">
+              <div class="Enter">Username</div>
+              <div class="input-head"></div>
+              <div class="input">
+                <input id="username" name="username" type="text" />
+              </div>
+            </div>
+
+            <div class="form-item">
+              <div class="Enter">Password</div>
+              <div class="input-head"></div>
+              <div class="input">
+                <input id="password" name="password" type="password" />
+              </div>
+            </div>
+
+            <div class="form-item">
+              <div class="Enter">Email</div>
+              <div class="input-head"></div>
+              <div class="input">
+                <input id="email" name="email" type="text" />
+              </div>
+            </div>
+
+            <div class="btn">
+              <button type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./JS/register.js"></script>
+  </body>
+</html>

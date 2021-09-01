@@ -1,0 +1,110 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style-type: none;
+    background: rgb(0, 0, 100);
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    transition: all 0.3s linear;
+    font-weight: 200;
+    box-shadow: 0 5px 20px rgb(0, 0, 255);
+    border-bottom: rgb(200, 200, 200) solid 1px;
+  }
+  
+  .link-text {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-shadow: 2px 2px black;
+  }
+  
+  .navigate {
+    margin: 50px;
+    display: flex;
+    gap: 30px;
+  }
+
+
+  #register {
+    background-color: rgb(200, 200, 200);
+    color: rgb(0, 0, 50);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(/EOMP/frontend/images/Glow\ night\ skyline.png);
+  }
+  
+  .reg-head {
+    margin: 40px;
+    letter-spacing: 3px;
+    color: rgb(200, 200, 200);
+    font-size: 20px;
+    font-weight: 900;
+    text-shadow: 2px 2px black;
+}
+
+  .form-item {
+    padding: 10px;
+  }
+  
+  input {
+    width: 500px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    color: rgb(200, 200, 200);
+    background: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    font-weight: 900;
+    text-shadow: 2px 2px black;
+
+  }
+  
+  button {
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+    background-color: rgb(200, 200, 200);
+    border: 1px solid rgb(0, 0, 50);
+    color: rgb(0, 0, 50);
+    letter-spacing: 3px;
+  }
+  
+  button:hover {
+    color: rgb(20, 20, 20);
+    transition: 1s;
+    box-shadow: 0 5px 20px rgb(0, 0, 100);
+    border: 1px solid rgb(200, 200, 200);
+  }
+  
+  .btn {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .link {
+    /* text-decoration: none; */
+    color: rgb(0, 0, 50);
+  }
+
+  .Enter{
+      color: rgb(200, 200, 200);
+      font-size: 20px;
+      font-weight: 900;
+      text-shadow: 2px 2px black;
+  }
