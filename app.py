@@ -39,6 +39,17 @@ def usertable():
     conn.close()
 
 
+def logintable():
+    conn = sqlite3.connect('Store.db')
+    print("DB opened")
+
+    conn.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                 "username TEXT NOT NULL,"
+                 "password TEXT NOT NULL)")
+    print("Table created")
+    conn.close()
+
+
 usertable()
 
 
@@ -76,8 +87,8 @@ beats_table()
 def get_beats():
     with sqlite3.connect('Store.db') as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM beats")
         beat = cursor.fetchall()
+        cursor.execute("SELECT * FROM beats")
 
         beat_data = []
 
@@ -162,26 +173,32 @@ def create_beat():
     response = {}
 
     if request.method == "POST":
-        beat_name = request.json['beat_name']
-        beat_type = request.json['beat_type']
-        beat_tempo = request.json['beat_tempo']
-        image = image_convert()
-        producer = request.json['producer']
-        price = request.json['price']
+        try:
+            beat_name = request.json['beat_name']
+            beat_type = request.json['beat_type']
+            beat_tempo = request.json['beat_tempo']
+            image = image_convert()
+            producer = request.json['producer']
+            price = request.json['price']
 
-        with sqlite3.connect('Store.db') as conn:
-            cursor = conn.cursor()
-            cursor.execute("INSERT INTO beats("
-                           "beat_name,"
-                           "beat_type,"
-                           "beat_tempo,"
-                           "image,"
-                           "producer,"
-                           "price) VALUES(?, ?, ?, ?, ?, ?)", (beat_name, beat_type, beat_tempo, image, producer, price))
-            conn.commit()
-            response["message"] = "success"
-            response["status_code"] = 201
-        return response
+            with sqlite3.connect('Store.db') as conn:
+                cursor = conn.cursor()
+                cursor.execute("INSERT INTO beats("
+                               "beat_name,"
+                               "beat_type,"
+                               "beat_tempo,"
+                               "image,"
+                               "producer,"
+                               "price) VALUES(?, ?, ?, ?, ?, ?)",
+                               (beat_name, beat_type, beat_tempo, image, producer, price))
+                conn.commit()
+                response["message"] = "success"
+                response["status_code"] = 201
+            return response
+        except ValueError:
+            response["status_code"] = 400
+            response["message"] = "Failed to create beat"
+            return response
 
 
 @app.route('/display-users/', methods=["GET"])
@@ -307,7 +324,7 @@ def log():
         with sqlite3.connect('Store.db') as conn:
             cursor = conn.cursor()
             cursor.row_factory = sqlite3.Row
-            cursor.execute('SELECT FROM users WHERE username=? and password=?', (username, password))
+            cursor.execute("SELECT * FROM users WHERE username=? and password=?", (username, password))
             user = cursor.fetchall()
             data = []
 
