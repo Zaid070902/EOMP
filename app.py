@@ -107,7 +107,7 @@ def image_convert():
                       api_secret="HwbSS8r41xhx6tYhQ_KC7TulLL4")
     upload_result = None
     if request.method == 'POST' or request.method == 'PUT':
-        picture = request.files['image']
+        picture = request.json['image']
         app.logger.info('%s file_to_upload', picture)
         if picture:
             upload_result = cloudinary.uploader.upload(picture)
